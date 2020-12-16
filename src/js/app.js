@@ -1,9 +1,8 @@
 import $ from 'jquery'
 import velocity from 'velocity-animate'
 
-console.log('app')
+console.log('saruta')
 
-const result = add(1, 2)
 
-$('body').append(result)
+// $('body').append(result)
 velocity($('h1'), 'fadeIn', { duration: 2000, loop: true })
