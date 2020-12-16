@@ -28,5 +28,12 @@ module.exports = {
       template: './src/html/another.html', // テンプレートの場所
       chunks: ['another'] // 読み込ませたいエントリポイント名を指定する
     })
-  ]
+  ],
+  // ファイルの分割で指定。section5
+  optimization: {
+    splitChunks: {
+      chunks: 'initial',// initial:静的にインポートしているモジュールが対象(要するに「import」の部分が分割の対象になる)
+      name: 'vendor' // 分割して出力するファイルの名前
+    }
+  },
 }
