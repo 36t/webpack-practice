@@ -17,7 +17,5 @@
     "url": "https://github.com/36t/webpack-practice/issues"
   },
   "homepage": "https://github.com/36t/webpack-practice#readme",
-  "devDependencies": {
-    "webpack-merge": "^5.7.1"
-  }
+  "devDependencies": {}
 }
