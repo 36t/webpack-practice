@@ -1,2 +1,1 @@
-# webpack
-for study
+# webpack practice
