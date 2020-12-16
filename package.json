@@ -4,7 +4,7 @@
   "description": "practice webpack",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.dev.js",
+    "start": "webpack serve --mode development --config webpack.dev.js",
     "dev": "webpack --config webpack.dev.js --watch",
     "build": "webpack --config webpack.prod.js"
   },
