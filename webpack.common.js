@@ -2,6 +2,8 @@
 const path = require('path');
 // 出力先をクリーンアップ
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// htmlテンプレート
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: './src/js/app.js', // エントリポイント
@@ -11,8 +13,10 @@ module.exports = {
     },
     plugins: [
         // 上記outputで指定したディレクトリ以下をクリーンアップ
-        new CleanWebpackPlugin({
-            cleanOnceBeforeBuildPatterns: ['**/*', '!**.html'] // htmlは対象外
+        new CleanWebpackPlugin(),
+        // htmlテンプレートを指定
+        new HtmlWebpackPlugin({
+            template: './src/html/index.html'
         })
     ]
 }
