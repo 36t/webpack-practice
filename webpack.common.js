@@ -12,7 +12,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'public'), // 絶対パス必要
-    filename: 'js/[name].bundle.js' // 出力するファイルの名前([name]にentryポイントが入る。「.bundle.」ｊは無くても良い)
+    chunkFilename: '[name].js', // splitChunksの設定はこちらが優先される
+    filename: 'js/[name].[contenthash].js', // 出力するファイルの名前([name]にentryポイントが入る。「.bundle.」ｊは無くても良い)
   },
   plugins: [
     // 上記outputで指定したディレクトリ以下をクリーンアップ
