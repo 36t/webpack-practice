@@ -18,8 +18,18 @@ module.exports = {
     */
     filename: (pathData) => {
       // pathData.chunk.name：nameが入る。ここでは「app, another, vendor, vendor-modules」
-      return pathData.chunk.name.search( /vendor/ ) > -1 ? 'js/[name].js': 'js/[name].[contenthash].js';
+      return pathData.chunk.name.search(/vendor/) > -1 ? 'js/[name].js' : 'js/[name].[contenthash].js';
     },
+  },
+  // babelの設定
+  module: {
+    rules: [
+      {
+        test: /\\.js$/, // loaderの処理対象。今回はjs
+        exclude: /node_modules/, // 除外したいディレクトリ。node_modulesを入れると処理が重くなるので、基本的にはこの設定を行う
+        loader: 'babel-loader' // 利用するloader
+      }
+    ]
   },
   plugins: [
     // 上記outputで指定したディレクトリ以下をクリーンアップ
@@ -49,7 +59,7 @@ module.exports = {
         // src/modules/greet.jsの出力設定
         vendorsModules: { // プロパティ名は任意で良い
           test: /[\\/]src[\\/]js[\\/]modules[\\/]/, // [\\\\/] <= 途中のスラッシュを書く場合 (普通に書くと、ウインドウズは動作しない)
-           name: 'vendor-modules', // 分割して出力するファイルの名前
+          name: 'vendor-modules', // 分割して出力するファイルの名前
           minSize: 0, // 分割の対象となるモジュールの最小サイズ。デフォルトは30kb。今回めっちゃ小さいので
           minChunks: 2 // モジュールがいくつの場所で利用されていれば分割の対象とするか
         }
