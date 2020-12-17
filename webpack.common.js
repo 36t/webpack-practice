@@ -18,7 +18,7 @@ module.exports = {
     */
     filename: (pathData) => {
       // pathData.chunk.name：nameが入る。ここでは「app, another, vendor, vendor-modules」
-      return pathData.chunk.name.search( /vendor/ ) > -1 ? 'js/[name].js': 'js/[name].js';
+      return pathData.chunk.name.search( /vendor/ ) > -1 ? 'js/[name].js': 'js/[name].[contenthash].js';
     },
   },
   plugins: [
