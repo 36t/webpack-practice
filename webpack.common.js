@@ -73,7 +73,7 @@ module.exports = {
         // test: /\\.scss$/, // エラーになる
         test: /\.scss$/,
         // use: ['style-loader', 'css-loader', 'sass-loader'] // loaderは指定した順番の逆から実行される　
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'] // loaderは指定した順番の逆から実行される　
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'] // loaderは指定した順番の逆から実行される　
       }
     ]
   },
