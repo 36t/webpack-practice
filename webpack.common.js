@@ -82,6 +82,34 @@ module.exports = {
         test: /\.scss$/,
         // use: ['style-loader', 'css-loader', 'sass-loader'] // loaderは指定した順番の逆から実行される　
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'] // loaderは指定した順番の逆から実行される　
+      },
+      // imageについて
+      {
+        test: /\.(jpe?g|gif|png|svg)$/, // 画像の拡張子
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[contenthash].[ext]',
+              outputPath: 'img', // 画像の出力先。デフォルトのパスは「path: path.resolve(__dirname, 'public')」
+              publicPath: '/img', // 出力する画像からのパス。public/imgにしたい場合は'/img'
+            },
+          },
+          // 画像の圧縮
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                quality: 10
+              }
+            }
+          }
+        ],
+      },
+      // htmlについて (画像)
+      {
+        test: /\.html$/,
+        loader: 'html-loader'
       }
     ]
   },
