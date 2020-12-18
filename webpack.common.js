@@ -4,6 +4,8 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // htmlテンプレート
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// cssの外部化
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: {
@@ -63,7 +65,8 @@ module.exports = {
       {
         // test: /\\.scss$/, // エラーになる
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'] // loaderは指定した順番の逆から実行される
+        // use: ['style-loader', 'css-loader', 'sass-loader'] // loaderは指定した順番の逆から実行される　
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'] // loaderは指定した順番の逆から実行される　
       }
     ]
   },
@@ -80,6 +83,10 @@ module.exports = {
       filename: 'another.html', // 出力するファイル名。何も指定していないとindex.html
       template: './src/html/another.html', // テンプレートの場所
       chunks: ['another'] // 読み込ませたいエントリポイント名を指定する
+    }),
+    // sassの設定
+    new MiniCssExtractPlugin({
+      filename: './css/[name].[contenthash].css' // output.pathの相対パスに出力
     })
   ]
 }
