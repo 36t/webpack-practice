@@ -1,0 +1,1 @@
+(self.webpackChunkwebpack_practice=self.webpackChunkwebpack_practice||[]).push([[514],{501:(e,c,p)=>{"use strict";function a(e){return`Hello, ${e}!!`}p.d(c,{Q:()=>a})}}]);

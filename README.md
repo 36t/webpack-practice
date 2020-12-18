@@ -13,5 +13,13 @@ yarn dev
 yarn build
 
 # add package
-yarn -D <package>
+yarn add <package>
+yarn add -D <package>
+
+# remove package
+yarn remove <package>
+
+# eslint
+yarn eslint
+yarn eslint:fix
 ```

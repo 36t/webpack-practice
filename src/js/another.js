@@ -1,6 +1,7 @@
 import $ from 'jquery'
 import velocity from 'velocity-animate'
 import { greet } from './modules/greet'
+import '../scss/style.scss'
 
 console.log('load another.js')
 
