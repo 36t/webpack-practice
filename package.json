@@ -56,5 +56,13 @@
   "dependencies": {
     "jquery": "^3.5.1",
     "velocity-animate": "^1.5.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js}": "eslint --max-warnings=0 --ext .js --fix"
   }
 }
