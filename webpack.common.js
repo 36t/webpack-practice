@@ -6,6 +6,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // cssの外部化
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// 出力するcssの最適化
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+
 
 module.exports = {
   entry: {
@@ -23,8 +26,8 @@ module.exports = {
       return pathData.chunk.name.search(/vendor/) > -1 ? 'js/[name].js' : 'js/[name].[contenthash].js';
     },
   },
-  // ファイルの分割で指定
   optimization: {
+    // ファイルの分割で指定
     splitChunks: {
       chunks: 'initial',  // initial:静的にインポートしているモジュールが対象(要するに「import」の部分が分割の対象になる),
       cacheGroups: {
@@ -48,7 +51,12 @@ module.exports = {
           minChunks: 2 // モジュールがいくつの場所で利用されていれば分割の対象とするか
         }
       }
-    }
+    },
+    // cssの最適化
+    minimize: true,
+    minimizer: [
+      new CssMinimizerPlugin(),
+    ],
   },
   module: {
     rules: [
@@ -73,7 +81,7 @@ module.exports = {
         // test: /\\.scss$/, // エラーになる
         test: /\.scss$/,
         // use: ['style-loader', 'css-loader', 'sass-loader'] // loaderは指定した順番の逆から実行される　
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'] // loaderは指定した順番の逆から実行される　
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'] // loaderは指定した順番の逆から実行される　
       }
     ]
   },
