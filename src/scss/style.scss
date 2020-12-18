@@ -4,4 +4,5 @@ $textColor: #fff;
 body {
   background: $background;
   color: $textColor;
+  user-select: none;
 }
