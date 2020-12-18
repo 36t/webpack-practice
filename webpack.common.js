@@ -29,14 +29,14 @@ module.exports = {
       chunks: 'initial',  // initial:静的にインポートしているモジュールが対象(要するに「import」の部分が分割の対象になる),
       cacheGroups: {
         // jqueryとvelocity-animateの出力設定
-        vendor1: { // 「vendor」の名前は任意で良い。わかりやすい名前を
+        vendorJS: { // 「vendorJS」の名前は任意で良い。わかりやすい名前を
           test: /[\\/]node_modules[\\/]/, // jqueryとvelocity-animateはnode_modulesの下にあるのでこのように設定
           name: 'vendor' // 分割して出力するファイルの名前
         },
         // src/modules/greet.jsの出力設定
-        vendorsModules: { // プロパティ名は任意で良い
+        suctomJS: { // プロパティ名は任意で良い
           test: /[\\/]src[\\/]js[\\/]modules[\\/]/, // [\\\\/] <= 途中のスラッシュを書く場合 (普通に書くと、ウインドウズは動作しない)
-          name: 'vendor-modules', // 分割して出力するファイルの名前
+          name: 'script', // 分割して出力するファイルの名前
           minSize: 0, // 分割の対象となるモジュールの最小サイズ。デフォルトは30kb。今回めっちゃ小さいので
           minChunks: 2 // モジュールがいくつの場所で利用されていれば分割の対象とするか
         },
