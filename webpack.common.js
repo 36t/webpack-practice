@@ -21,41 +21,6 @@ module.exports = {
       return pathData.chunk.name.search(/vendor/) > -1 ? 'js/[name].js' : 'js/[name].[contenthash].js';
     },
   },
-  module: {
-    rules: [
-      // eslintの設定
-      {
-        enforce: 'pre', // preを指定してない場合よりも先に実行する。今回はBabelよりも先
-        test: /\\.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader',
-        options: {
-          fix: true, // eslintloaderのオプション。場合によってはコードを調整してくれる
-        }
-      },
-      // Babelの設定
-      {
-        test: /\\.js$/, // loaderの処理対象。今回はjs
-        exclude: /node_modules/, // 除外したいディレクトリ。node_modulesを入れると処理が重くなるので、基本的にはこの設定を行う
-        loader: 'babel-loader' // 利用するloader
-      }
-    ]
-  },
-  plugins: [
-    // 上記outputで指定したディレクトリ以下をクリーンアップ
-    new CleanWebpackPlugin(),
-    // htmlテンプレートを指定
-    new HtmlWebpackPlugin({
-      template: './src/html/index.html',
-      chunks: ['app'] // 読み込ませたいエントリポイント名を指定する
-    }),
-    // anotherの設定
-    new HtmlWebpackPlugin({
-      filename: 'another.html', // 出力するファイル名。何も指定していないとindex.html
-      template: './src/html/another.html', // テンプレートの場所
-      chunks: ['another'] // 読み込ませたいエントリポイント名を指定する
-    })
-  ],
   // ファイルの分割で指定
   optimization: {
     splitChunks: {
@@ -76,4 +41,45 @@ module.exports = {
       }
     }
   },
+  module: {
+    rules: [
+      // eslintの設定
+      {
+        enforce: 'pre', // preを指定してない場合よりも先に実行する。今回はBabelよりも先
+        test: /\\.js$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        options: {
+          fix: true, // eslintloaderのオプション。場合によってはコードを調整してくれる
+        }
+      },
+      // Babelの設定
+      {
+        test: /\\.js$/, // loaderの処理対象。今回はjs
+        exclude: /node_modules/, // 除外したいディレクトリ。node_modulesを入れると処理が重くなるので、基本的にはこの設定を行う
+        loader: 'babel-loader' // 利用するloader
+      },
+      // sassについて
+      {
+        // test: /\\.scss$/, // エラーになる
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'] // loaderは指定した順番の逆から実行される
+      }
+    ]
+  },
+  plugins: [
+    // 上記outputで指定したディレクトリ以下をクリーンアップ
+    new CleanWebpackPlugin(),
+    // htmlテンプレートを指定
+    new HtmlWebpackPlugin({
+      template: './src/html/index.html',
+      chunks: ['app'] // 読み込ませたいエントリポイント名を指定する
+    }),
+    // anotherの設定
+    new HtmlWebpackPlugin({
+      filename: 'another.html', // 出力するファイル名。何も指定していないとindex.html
+      template: './src/html/another.html', // テンプレートの場所
+      chunks: ['another'] // 読み込ませたいエントリポイント名を指定する
+    })
+  ]
 }
