@@ -92,6 +92,11 @@ module.exports = {
           outputPath: 'img', // 画像の出力先。デフォルトのパスは「path: path.resolve(__dirname, 'public')」
           publicPath: '/img' // 出力する画像からのパス。public/imgにしたい場合は'/img'
         }
+      },
+      // htmlについて (画像)
+      {
+        test: /\.html$/,
+        loader: 'html-loader'
       }
     ]
   },
